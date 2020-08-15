@@ -13,7 +13,7 @@ class Lexer(object):
 
         try:
             for line in self.maped_cfg_value:
-                print(line)
+                print(str(line))
 
         except Exception as ex:
             print(ex)
