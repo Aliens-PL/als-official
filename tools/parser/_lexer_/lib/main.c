@@ -1,9 +1,10 @@
+
 #include <stdio.h>
-#include "shared.h"
+#include "sayhi.h"
 
 int main(void)
 {
-	puts("This is from main !\n");
-	say("Yo !");
+	puts("+ Hello from main\n");
+	sayhi();
 	return 0;
 }
