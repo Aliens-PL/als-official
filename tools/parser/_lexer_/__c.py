@@ -18,19 +18,19 @@ class Cfg(object):
         self.maped = []
         try:
             self.cfg = open("__c.cfg").readlines()
-            assert self.cfg != None , "[ERR] File __c.cfg is Missing or Broken !" #f_call_fixer
+            assert self.cfg != None , 10 #f_call_fixer
 
             for i,line in enumerate(self.cfg):
                 # flag must start with either _ or .
                 if line[0] in ['.', '_']:
                     splited_line = line.split(' ')
                     
-                    assert splited_line.__len__() == 2 , "[ERR] File __c.cfg is Broken !" #f_call_fixer
+                    assert splited_line.__len__() == 2 , 11 #f_call_fixer
                     self.maped.append(splited_line[0]+chr(flag_sep))
                     _tmp_len = splited_line[1].replace('\n','').__len__()
 
-                    assert _tmp_len > 0 , "[ERR] File __c.cfg is Broken !" #f_call_fixer
-                    assert _tmp_len % 2 == 0 ,str(_tmp_len)+"[ERR] File __c.cfg is Broken !" #f_call_fixer
+                    assert _tmp_len > 0 , 11 #f_call_fixer
+                    assert _tmp_len % 2 == 0 , 11 #f_call_fixer
 
                     pos = 0
                     while pos < _tmp_len:
@@ -40,11 +40,11 @@ class Cfg(object):
 
                 else:
                     #f_call_fixer
-                    raise Exception("Failed Checking cfg's signatures !")
+                    raise Exception(12)
 
-        except Exception as ex:
-            print(str(ex))
-            exit(0)
+        except Exception:
+            print("Excep happend !") 
+            exit(-1)#f_call_fixer
     
     def get_cfg(self):
         return self.maped

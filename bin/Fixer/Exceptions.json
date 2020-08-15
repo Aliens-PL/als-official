@@ -1,0 +1,22 @@
+{
+	"en":
+	{
+		"-1":"[ERR] Unknown Exception Happend.",
+		
+		"10":"[ERR] File __c.cfg is Missing.",
+		"11":"[ERR] File __c.cfg is Badly Formatted.",
+		"12":"[ERR] Unknown __c.cfg File Signatures.",
+		"13":"[ERR] Cfg Called on Null"
+		
+	},
+
+	"fr":
+	{
+
+	},
+
+	"ar":
+	{
+
+	}
+}
