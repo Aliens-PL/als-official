@@ -29,7 +29,7 @@ ref/flag => Hada ghanfiltri bih chno type dyal dakchi li kteb user .
                 _A004 5a4d2073706163652067616c61787920706c616e65742069706c616e6574206e6f74206e756c6c
                 _A005 73686f77
                 _A006 5f616c735f
-                .A007 4023212c 
+                .A007 4023212c
                 .A008 7b283c2227
 
             ]
