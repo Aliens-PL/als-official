@@ -25,9 +25,10 @@ class __c:
                     splited_line = line.split(' ')
                     #f_call_fixer
                     assert splited_line.__len__() == 2 , "[ERR] File __c.cfg is Broken !"
-                    self.maped.append(splited_line[0])
-                    for j, each in enumerate(splited_line[1]):
-                        
+                    self.maped.append(splited_line[0]+chr(0x0))
+                    for j, each in enumerate(splited_line[1][2:]):
+                        if j > 0 and j % 2 == 0:
+                            pass
                 else:
                     #f_call_fixer
         except Exception as ex:
