@@ -14,7 +14,7 @@ class Cfg(object):
     """
     def __init__(self):
         flag_sep = 0x01
-        print("+ Starting __C ")
+        print("+ Starting __Cfg ")
         self.maped = []
         try:
             self.cfg = open("__c.cfg").readlines()
