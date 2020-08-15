@@ -23,7 +23,7 @@ ref/flag => Hada ghanfiltri bih chno type dyal dakchi li kteb user .
                      |
                      V
 
-                _A001 3f203f3f206966 =(Hiya)=> ? ?? if         # kan separi b 0x20 (li hiya espace) 
+                _A001 3f203f3f206966 =(Hiya)=> ? ?? if                          # kan separi b 0x20 (li hiya espace) 
                 _A002 2b202d202a202f2025203e3e203c3c207c2026205e207e203d
                 _A003 6c6f6f70
                 _A004 5a4d2073706163652067616c61787920706c616e65742069706c616e6574206e6f74206e756c6c
