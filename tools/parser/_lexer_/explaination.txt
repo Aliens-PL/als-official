@@ -1,0 +1,44 @@
+
+
+f fichier : __c.cfg
+
+ref/flag    [list dyal les cas possibles]
+
+- kiffach ?
+
+ref/flag => Hada ghanfiltri bih chno type dyal dakchi li kteb user .
+            matalan '?' => Condition
+            Condition 3ndha ref A...x
+            [
+                
+                [condition]
+                [operation]
+                [loop]
+                [keyword]
+                [pdefs_f]
+                [pdefs_c]
+                [symbole_1]
+                [symbole_2]
+
+                     |
+                     V
+
+                _A001 3f203f3f206966 =(Hiya)=> ? ?? if         # kan separi b 0x20 (li hiya espace) 
+                _A002 2b202d202a202f2025203e3e203c3c207c2026205e207e203d
+                _A003 6c6f6f70
+                _A004 5a4d2073706163652067616c61787920706c616e65742069706c616e6574206e6f74206e756c6c
+                _A005 73686f77
+                _A006 5f616c735f
+                .A007 4023212c 
+                .A008 7b283c2227
+
+            ]
+            refs li kaybdaw b _ => kat3ni biana dak keyword ghaykon string exmpl : (if , ?? ...etc)
+            refs li kaybdaw b . => kat3ni ......................... char exmpl : (* , +, - , ", ' ...etc)
+            3lach hadchi kamlo ? Bon Lexer will be made with C !
+            why ? Because C x3.5 times faster than python .
+            + Test of speed (This is the Everage speed of reading 10 files 2 lines each) :
+                - Old C:      0.234 s
+                - Old Python: 0.389 s
+                - New Python: 0.213 s
+                - New C:      0.068 s     <--- !!!!
