@@ -4,6 +4,7 @@ from __c import __C
 class Lexer(object):
 
     def __init__(self , abs_file_path):
+        print("+ Starting Lexer ")
         self.maped_cfg_instance = __C()
         self.maped_cfg_value    = self.maped_cfg_instance.get_cfg()
         self.maped_cfg_len = self.maped_cfg_value.__len__()

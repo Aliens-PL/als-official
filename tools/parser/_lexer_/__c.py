@@ -13,6 +13,7 @@ class __C(object):
     + Get them ready along with the file content to be sent to the extern function
     """
     def __init__(self):
+        print("+ Starting __C ")
         self.maped = []
         try:
             self.cfg = open("__c.cfg").readlines()
