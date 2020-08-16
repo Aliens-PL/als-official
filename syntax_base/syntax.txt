@@ -35,24 +35,46 @@ Planet Student:
 		
 		splitChar.len('>1')  
 		ls = []
-
+		
+		###################################### DES EXMPLES FOR LOOPS in ALS ######################################
 		# exmpl 1 for loop
 		txt.loop(item):
 			if (item == splitChar):
 				ls.add()	
-	
+				
 				
 		# Exmpl 2 for loop
+		txt.loop(e,item):
+			e # is Enumeration of items in txt
+
+		# Exmpl 3 for loops :
+		txt.loop(-e,item):
+			-e # means loop from last to start!
+
+		# Exmpl 4 : Loo from in range (x->y)		
+		@loop(end) as a:
+			# end <- is last  number for exmpl if end = 10 , 'a' will take variables from 0 to 10 (10 included)
 		
-	
+		@loop(start, end) as a:
+			# start <- from  this number
+			# end <- to this number ( end included )
+		
+		# Exmpl 5 : While loop
+		@while(..):
+			....
+
+		
+		
+
 	# Split a list of chars by a string
 	$Split splitStr:
+		....
 	
-	
 
+### Exmpl of Use class Student :
 
-
-load Student
+# Import the class if not in same file
+load Student 
 
 	Adil  = Student() 
 	Jamal = Student("Jamal" , "2eme annee")
