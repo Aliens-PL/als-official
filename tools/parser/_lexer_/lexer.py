@@ -1,6 +1,8 @@
 #__import__('sys').path.append('..') # Get rid of higher dir msg
 from __c import Cfg
+import ctypes , glob
 
+LEXER_C_SH_LIB_PATH = '../_clibs_/__lexer.so'
 
 #---TO DO--------------------------------------------------------------------------------#
 
@@ -9,6 +11,7 @@ from __c import Cfg
 #----------------------------------------------------------------------------------------#
 
 class Lexer(object):
+
 
     def __init__(self , abs_file_path):
         print("+ Starting Lexer ")
@@ -20,13 +23,17 @@ class Lexer(object):
         assert self.maped_cfg_len > 0 , 13
 
         try:
-            for line in self.maped_cfg_value:
-<<<<<<< HEAD
-                print(str(line))
-=======
-                print(line)
-                
->>>>>>> f95f07b20662781f5008d467df8ad2bd87352934
+            lPath =  glob.glob(LEXER_C_SH_LIB_PATH)[0]
+
+            assert lPath != None , 14 #f_call_fixer
+            assert lPath != "" , 14 #f_call_fixer
+            
+            lexLib = ctypes.CDLL(lPath)
+
+            assert lexLib != None , 15 #f_call_fixer
+
+            lexLib.Lexer.restype = ctypes.c_void_p
+            lexLib.Lexer.argtypes
 
         except Exception:
             print("Excep happend !") 

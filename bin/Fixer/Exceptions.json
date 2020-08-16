@@ -6,8 +6,9 @@
 		"10":"[ERR] File __c.cfg is Missing.",
 		"11":"[ERR] File __c.cfg is Badly Formatted.",
 		"12":"[ERR] Unknown __c.cfg File Signatures.",
-		"13":"[ERR] Cfg Called on Null"
-		
+		"13":"[ERR] Cfg Called on Null",
+		"14":"[ERR] C __lexer library Not found !",
+		"15":"[ERR] Failed to load C __lexer Library !"
 	},
 
 	"fr":
