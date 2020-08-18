@@ -33,10 +33,10 @@ class Lexer(object):
             assert lexLib != None , 15 #f_call_fixer
 
             lexLib.Lexer.restype = ctypes.c_void_p
-            lexLib.Lexer.argtypes
+            #lexLib.Lexer.argtypes = 
 
         except Exception:
-            print("Excep happend !") 
+            print("Excep happend !")
             exit(-1)#f_call_fixer
         
     
