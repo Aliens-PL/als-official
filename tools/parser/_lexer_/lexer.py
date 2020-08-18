@@ -33,7 +33,11 @@ class Lexer(object):
             assert lexLib != None , 15 #f_call_fixer
 
             lexLib.Lexer.restype = ctypes.c_void_p
-            #lexLib.Lexer.argtypes = 
+            
+            # PROTO => (const char * cfg , const char * src )
+            lexLib.Lexer.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
+
+            lexLib.Lexer("SAAD CONFIG" , "SAAD SRC ALS CODE")
 
         except Exception:
             print("Excep happend !")
