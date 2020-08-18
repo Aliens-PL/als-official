@@ -2,7 +2,7 @@
 from __c import Cfg
 import ctypes , glob
 
-LEXER_C_SH_LIB_PATH = '../_clibs_/__lexer.so'
+LEXER_C_SH_LIB_PATH = '../_clibs_/lib__lexer.so'
 
 #---TO DO--------------------------------------------------------------------------------#
 
@@ -35,12 +35,12 @@ class Lexer(object):
             lexLib.Lexer.restype = ctypes.c_void_p
             
             # PROTO => (const char * cfg , const char * src )
-            lexLib.Lexer.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
+            #lexLib.Lexer.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
 
-            lexLib.Lexer("SAAD CONFIG" , "SAAD SRC ALS CODE")
+            lexLib.Lexer(b"SAAD CONFIG" , b"SAAD SRC ALS CODE")
 
-        except Exception:
-            print("Excep happend !")
+        except Exception as ex:
+            raise ex
             exit(-1)#f_call_fixer
         
     
