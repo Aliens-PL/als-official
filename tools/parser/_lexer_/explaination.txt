@@ -37,6 +37,7 @@ ref/flag => Hada ghanfiltri bih chno type dyal dakchi li kteb user .
             refs li kaybdaw b . => kat3ni ......................... char exmpl : (* , +, - , ", ' ...etc)
             3lach hadchi kamlo ? Bon Lexer will be made with C !
             why ? Because C x3.5 times faster than python .
+           
             + Test of speed (This is the Everage speed of reading 10 files 2 lines each) :
                 - Old C:      0.234 s
                 - Old Python: 0.389 s
