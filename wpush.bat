@@ -1,3 +1,3 @@
 git add .
 git commit -m "Schedule Commit"
-git push origin saad
+git push -f origin saad
