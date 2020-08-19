@@ -1,11 +1,10 @@
 #ifndef lexer_h__
 #define lexer_h__
-#include <stdlib.h>
 
 
 // ------------ COMFIGS ------------ //
 #define MAX_POSSIBLE_MODULES_LOADS 0xB
-
+#define NP(T) (T)0
 
 // -----------    END    ----------- //
 
@@ -37,7 +36,7 @@
 
 typedef struct __LOADS
 {
-    char * path = NULL;
+    char * path;
     char * Modules[MAX_POSSIBLE_MODULES_LOADS];
 
 } LEX_LOADS;
@@ -45,7 +44,7 @@ typedef struct __LOADS
 
 typedef struct __TOKEN
 {
-    int child_of = 0;
+    int child_of;
     char * type;
     char * value;
 
@@ -167,7 +166,7 @@ const unsigned char _ALS_SYMBOLE_1[] =
 
 // the opening is always in an index fardi
 // the closing is always in an index zawji
-const unsigned char _ALS_SYMBOLE_1[] = 
+const unsigned char _ALS_SYMBOLE_2[] = 
 {
     0x7b,   0x7d,   // {}
     0x5b,   0x5d,   // []
@@ -188,8 +187,8 @@ const unsigned char _ALS_SYMBOLE_1[] =
 
 
 // Main Lexer Func
-extern void * Lexer(const char *, const char *);
-void * check_loads(const char * line);
+extern void Lexer(const char *, const char *);
+void check_loads(const char * line);
 
 
 #endif
