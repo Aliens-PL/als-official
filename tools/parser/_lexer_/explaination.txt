@@ -17,8 +17,9 @@ ref/flag => Hada ghanfiltri bih chno type dyal dakchi li kteb user .
                 [keyword]
                 [pdefs_f]
                 [pdefs_c]
-                [symbole_1]
                 [symbole_2]
+                [symbole_1]
+                
 
                      |
                      V
