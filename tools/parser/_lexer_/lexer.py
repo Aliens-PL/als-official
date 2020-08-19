@@ -39,7 +39,7 @@ class Lexer(object):
 
             lexLib.Lexer(b"SAAD CONFIG" , b"SAAD SRC ALS CODE")
 
-        except Exception as ex:
+        except AssertionError as ex:
             raise ex
             exit(-1)#f_call_fixer
         
