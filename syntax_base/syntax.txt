@@ -1,6 +1,8 @@
 +++++++++++++ [ imports ] +++++++++++++++++
-from ../../person.als load Student, Teacher
-
+load Person
+from '../../person.als' load Student, Teacher
+from 'http://mywebsite.com/source_file.als' load Person
+from ''
 +++++++++++++++++++++++++++++++++++++++++++
 
 ++++++++++++++++++ Class Example :
