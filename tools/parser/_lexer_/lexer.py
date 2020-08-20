@@ -41,6 +41,6 @@ class Lexer(object):
 
         except AssertionError as ex:
             raise ex
-            exit(-1)#f_call_fixer
+            #exit(-1)#f_call_fixer
         
     
