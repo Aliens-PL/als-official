@@ -1,0 +1,39 @@
+{
+    "0": [
+        [
+            "Saad"
+        ],
+        "http://web.com/saad.als",
+        "http"
+    ],
+    "1": [
+        [
+            "@convert",
+            "@C",
+            "@DSDS@K"
+        ],
+        "@base",
+        "@"
+    ],
+    "2": [
+        [
+            "SaadModule"
+        ],
+        "",
+        "_"
+    ],
+    "3": [
+        [
+            "@base"
+        ],
+        null,
+        "@"
+    ],
+    "4": [
+        [
+            "ThisPlanetA"
+        ],
+        "../../this",
+        "_"
+    ]
+}

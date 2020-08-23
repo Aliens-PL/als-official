@@ -4,31 +4,42 @@
 #include "__lexer.h"
 
 
-void Lexer(const char * cfg , const char * src )
+extern const char ** u_case(const char * _f_)
 {
+    if (_f_[0] != '_') return (char *)U_CASE_INVALID_FLAG;
 
-	printf("+ Len = %s  !\n", src);
+    // _ALS_MODULE
+    // _ALS_CONDITION
+    //  _ALS_OPERATION
+    // _ALS_LOOP
+    // _ALS_KEYWORD
+    // _ALS_PREFS_F
+    // _ALS_PREFS_C
 
-	check_loads(src);
+    if      (_f_ == ALS_CONDITION)      return _ALS_CONDITION;
+    else if (_f_ == ALS_MODULE)         return _ALS_MODULE;
+    else if (_f_ == ALS_OPERATION)      return _ALS_OPERATION;
+    else if (_f_ == ALS_LOOP)           return _ALS_LOOP;
+    else if (_f_ == ALS_KEYWORD)        return _ALS_KEYWORD;
+    else if (_f_ == ALS_PREFS_F)        return _ALS_PREFS_F;
+    else if (_f_ == ALS_PREFS_C)        return _ALS_PREFS_C;
 
+    else return (char *)U_CASE_404_FLAG;
+
+    //incase
+    return NP(char **);
 }
 
-void check_loads(const char * line)
+
+
+extern const unsigned char * p_case(const char * _f_)
 {
-    /*
-     *  Possible cases for loading :
-     *  1- load ModuleName
-     *  2- from 'http://....../file.als' load ModuleName
-     *  3- from 'path_to_file/file.als' load ModuleName
-     *  4- load @base
-     *  5- from @base load @convert
-    */
-    
-    // check if valid loading
-    // Hardcoded indexes!
-    if ((*strstr(line, _ALS_MODULE[0]) | *strstr(line, _ALS_MODULE[1]) | *strstr(line, _ALS_MODULE[2])))
-    {
-	printf("+ Valid load !\n");        
-    }
-    else printf("- Not Valid load !\n");       
-} 
+    if (_f_[0] != '.') return P_CASE_INVALID_FLAG;
+
+    if (_f_ == ALS_SYMBOLE_1) return _ALS_SYMBOLE_1;
+    else if (_f_ == ALS_SYMBOLE_2) return _ALS_SYMBOLE_2;
+    else return P_CASE_404_FLAG;
+
+    // incase
+    return NP(char *);
+}

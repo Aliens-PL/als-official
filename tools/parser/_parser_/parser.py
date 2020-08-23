@@ -8,6 +8,15 @@
 
 class Parser(object):
     
+    ALS_MODULE      = "_A000"
+    ALS_CONDITION   = "_A001"
+    ALS_OPERATION   = "_A002"
+    ALS_LOOP        = "_A003"
+    ALS_KEYWORD     = "_A004"
+    ALS_PREFS_F     = "_A005"
+    ALS_PREFS_C     = "_A006"
+    ALS_SYMBOLE_1   = ".A007"
+    ALS_SYMBOLE_2   = ".A008"
 
     def __init__(self , lex_flag):
         # Check if valid step_flag

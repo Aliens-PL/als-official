@@ -6,6 +6,11 @@
 #define MAX_POSSIBLE_MODULES_LOADS 0xB
 #define NP(T) (T)0
 
+#define P_CASE_INVALID_FLAG "ex::16"
+#define U_CASE_INVALID_FLAG "ex::17"
+#define P_CASE_404_FLAG     "ex::18"
+#define U_CASE_404_FLAG     "ex::19"
+
 // -----------    END    ----------- //
 
 
@@ -34,37 +39,37 @@
 
 // ------------   TYPE DEFS   ------------ //
 
-typedef struct __LOADS
-{
-    char * path;
-    char * Modules[MAX_POSSIBLE_MODULES_LOADS];
+// typedef struct __LOADS
+// {
+//     char * path;
+//     char * Modules[MAX_POSSIBLE_MODULES_LOADS];
 
-} LEX_LOADS;
-
-
-typedef struct __TOKEN
-{
-    int child_of;
-    char * type;
-    char * value;
-
-} LEX_TOKEN;
+// } LEX_LOADS;
 
 
-typedef struct __LINE
-{
-    int number;
-    char * startType;
-    char * value;
+// typedef struct __TOKEN
+// {
+//     int child_of;
+//     char * type;
+//     char * value;
 
-} LEX_LINE;
+// } LEX_TOKEN;
+
+
+// typedef struct __LINE
+// {
+//     int number;
+//     char * startType;
+//     char * value;
+
+// } LEX_LINE;
 
 // ------------ CASES ------------ //
 
 const char * _ALS_MODULE[] = 
 { 
     "from",
-    "extern"
+    "extern" // This for later on To import extern Classes / Functions (load them up and point on that object)
     "load",
 };
 
@@ -143,9 +148,7 @@ const char * _ALS_PREFS_F[] =
 
 };
 
-
 // constants starts with _$NAME (UPPERCASE)
-
 const char * _ALS_PREFS_C[] = 
 { 
     "ALPHABETS_UPPER",      "ALPHABETS_LOWER",      "ASCII_TABLE",
@@ -163,9 +166,8 @@ const unsigned char _ALS_SYMBOLE_1[] =
 
 };
 
-
-// the opening is always in an index fardi
-// the closing is always in an index zawji
+// the opening is always at an index fardi
+// the closing is always at an index zawji
 const unsigned char _ALS_SYMBOLE_2[] = 
 {
     0x7b,   0x7d,   // {}
@@ -186,9 +188,10 @@ const unsigned char _ALS_SYMBOLE_2[] =
  */
 
 
-// Main Lexer Func
-extern void Lexer(const char *, const char *);
-void check_loads(const char * line);
+// point_case
+extern const unsigned char * p_case(const char *);
+// underscore case
+extern const char ** u_case(const char *);
 
 
 #endif

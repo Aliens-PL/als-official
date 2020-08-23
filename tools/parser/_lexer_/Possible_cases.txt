@@ -1,0 +1,18 @@
+[LOADS]
+
+*  Possible cases for loading :
+*  1- load ModuleName
+*  2- from 'http://....../file.als' load ModuleName
+*  3- from 'path_to_file/file.als' load ModuleName
+*  4- load @base
+*  5- from @base load @convert
+
+
+
+_ALS_MODULE
+_ALS_CONDITION
+_ALS_OPERATION
+_ALS_LOOP
+_ALS_KEYWORD
+_ALS_PREFS_F
+_ALS_PREFS_C
