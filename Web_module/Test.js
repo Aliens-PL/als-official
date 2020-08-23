@@ -51,7 +51,19 @@ const generate_list= (options,className)=>{
             `)
 }
 
+const generate_options_list = (array)=>{
+        return (`<select>
+                    ${generate_options_of_the_list(array)}
+                </select>`)
+}
 
+const generate_options_of_the_list = (array)=>{
+        let options = '';
+            array.map(option=>{
+                options = options.concat(`<option value='${option}'>${option}</option>`)
+            });
+        return options;
+}
 
 const return_items_to_render = (array)=>{
     let to_render ='';
@@ -61,14 +73,25 @@ const return_items_to_render = (array)=>{
 return to_render
 
 }
+
+
+
+
+                    /************************************************
+                    *                   exemples                    *
+                    ************************************************/
+
+
  const p = generate_paragraphe('try','try');
  const dropdown = generate_list(['hello','ALS','111']);
  const img = generate_image('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRtuJsCJezdhm0DRmP3cDTVUDZdrKn_uzS5IrMQeT-3VlK52LJT',100,100);
 const headline = generate_headline(3,'test','hello');
-
+const select = generate_options_list(['op1','op2','op3'])
 const div_1 = generate_content_display([p,dropdown],'div_1_style');
-const div_2 = generate_content_display([img,headline],'div_2_style')
- const dipslay = generate_default_container_ALS('mah_test','style','js',[div_1,div_2])
+const div_2 = generate_content_display([img,headline],'div_2_style');
+const div_3 = generate_content_display([p,select],'div_3_style')
+
+ const dipslay = generate_default_container_ALS('mah_test','style','js',[div_1,div_2,div_3])
  fs.writeFile('./myPage.html',dipslay,(error) => { 
 
     console.log('error',error)
