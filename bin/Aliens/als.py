@@ -91,86 +91,86 @@ class als(object):
                     project_name+"_conf":
                     [
                         {
-                            "$global.als":"""
+"$global.als":f"""
 
-                            @static
-                            Planet global
-                            
-                                #Which Operating system the project was created on .
-                                _$_OS_              = {}
+@static
+locked planet global
+{{
 
 
-                                # Global {}'s Default Configs
+    #Which Operating system the project was created on .
+    _$_OS_              = "{self.os}"
 
-                                
-                                # The project path
-                                _$_PROJECT_PATH     = {}
-                                
-                                # The project Name
-                                _$_PROJECT_NAME     = {}
 
-                                # Time when the project was created
-                                _$_PROJECT_TIME     = {}
-                                
-                                # Who Created the project
-                                _$_PROJECT_OWNER    = {}
+    # Global {self.project_name}'s Default Configs
 
-                                # For now we set compatibility for all
-                                _$_PROJECT_RUN_ON   = {}
-                                
-                                # By default it's als
-                                _$_DEFAULT_TYPE     = {}
 
-                              
+    # The project path
+    _$_PROJECT_PATH     = "{self.path}"
 
-                            """.format( 
-                                self.os, self.project_name, self.path, self.project_name,
-                                self.time, self.user, self.run_on, self.default_type
-                            )
+    # The project Name
+    _$_PROJECT_NAME     = "{self.project_name}"
+
+    # Time when the project was created
+    _$_PROJECT_TIME     = "{self.time}"
+
+    # Who Created the project
+    _$_PROJECT_OWNER    = "{self.user}"
+
+    # For now we set compatibility for all
+    _$_PROJECT_RUN_ON   = "{self.run_on}"
+
+    # By default it's als
+    _$_DEFAULT_TYPE     = "{self.default_type}"
+
+
+}}
+
+                            """
                         },
                     ]
                 },
                 {
                     "$main.als":'''
-                        
-                        # Hello dear Human !
-                        # Since you're here now , You must know that this is space so your earthy rules does not fully applies here !
 
-                        # To make things easier for you , here is some protips :
+# Hello dear Human !
+# Since you're here now , You must know that this is space so your earthy rules does not fully applies here !
 
-                        # + As you have already realised , we use # as a secret signal to say that this is a coment / tip
-                        
-                        # + Our EntryPoint is called space , without it there is no meaning for us !
-                        
-                        # + We use Variable to store usefull informations as Exmpl : 
-                        #       |_ name     = "Dr. JerrAlien"
-                        #       |_ my_id    = 1337
-                        #       |_ my_bag   = ["APen", "APaper"]
-  
-                        # + We Also have many Functionalities that we do use .
-                        #       |_ We Create them as following : $func_name p1 p2 { ... }
-                        #       |_ We Call them using $func_name(v1, v2)
-                      
-                        # + We also have Galaxies which are a Bunch of Entities , that we load up when needed.
-                        #       |
-                        #       |_ since you're one from us now , you have the right to build your own Galaxy !
+# To make things easier for you , here is some protips :
 
-                        # + Our Entities Are called either Planet or IPlanet , depending on our needs
-                        #       |
-                        #       |_ We've heard some rumors saying that Humans call that class/abstract class
-                        
-                        # Well , That's more than enough to get you started with , The rest is up to you now to explore .. !
-                        # Good luck , fresh Alien !
+# + As you have already realised , we use # as a secret signal to say that this is a coment / tip
 
+# + Our EntryPoint is called space , without it there is no meaning for us !
 
-                        from @als load @als_hello
+# + We use Variable to store usefull informations as Exmpl : 
+#       |_ name     = "Dr. JerrAlien"
+#       |_ my_id    = 1337
+#       |_ my_bag   = ["APen", "APaper"]
+
+# + We Also have many Functionalities that we do use .
+#       |_ We Create them as following : $func_name p1 p2 { ... }
+#       |_ We Call them using $func_name(v1, v2)
+
+# + We also have Galaxies which are a Bunch of Entities , that we load up when needed.
+#       |
+#       |_ since you're one from us now , you have the right to build your own Galaxy !
+
+# + Our Entities Are called either Planet or IPlanet , depending on our needs
+#       |
+#       |_ We've heard some rumors saying that Humans call that class/abstract class
+
+# Well , That's more than enough to get you started with , The rest is up to you now to explore .. !
+# Good luck , fresh Alien !
 
 
-                        $space()
-                        {
-                            @als_hello.als_official()
-                            $show("Hello Humanity ,\nWe , Aliens also know how to code !")
-                        }                    
+from @als load @als_hello
+
+
+$space()
+{
+    @als_hello.als_official()
+    $show("Hello Humanity ,\\nWe , Aliens also know how to code !")
+}                    
                     '''
                 }
             ]
@@ -213,10 +213,10 @@ class als(object):
             abs_dir = getcwd()
                         
             if possible_cmd[name][0] == seq.__len__():
-                abs_dir = path.abspath(seq[1])
+                abs_dir = path.abspath(seq[0])
 
             curdir = path.split(abs_dir)[-1]
-            if path.exists(curdir+"_conf/global.als"):
+            if path.exists(abs_dir+self.os_slash+curdir+"_conf/global.als"):
                 __import__("shutil").rmtree(abs_dir, ignore_errors=True)
             else:
                 self.isDone = False
@@ -232,7 +232,8 @@ class als(object):
         # Owner of the project
         try:
             self.user = path.split(path.expanduser('~'))[-1]
-        except Exception as ex:
+
+        except Exception:
             self.user = "~user"
         
         # Linux slash by default
