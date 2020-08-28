@@ -61,7 +61,7 @@ class als(object):
             else:        
                 if isinstance(dic[key] , list):
                     track_path += self.os_slash+key if not isRoot else ""
-                    print("+++ Creating : "+ track_path)
+                    print("++ Creating : "+ track_path)
                     mkdir( track_path , self.chmod)
 
                     for item in dic[key]:
@@ -176,11 +176,11 @@ locked planet global
 
 
 from @als load @als_hello
-
+using @als_hello
 
 $space()
 {
-    @als_hello.als_official()
+    $als_official()
     $show("Hello Humanity ,\\nWe , Aliens also know how to code !")
 }                    
                     '''
