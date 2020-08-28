@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo '############# Thanks for using ALS Lang #############\n\t- Made By 0x544D, ADIL, JAMAL\n\tgithub : https://github.com/Aliens-PL/als-official\n#######################################################\n\n'
+
 scr_dir=$(dirname "$(readlink -f "$BASH_SOURCE")")/tools/parser/
 
 
