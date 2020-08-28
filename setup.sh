@@ -1,6 +1,6 @@
 #!/bin/bash
 
-scr_dir=$(dirname "$(readlink -f "$BASH_SOURCE")")/bin/Aliens/
+scr_dir=$(dirname "$(readlink -f "$BASH_SOURCE")")/tools/parser/
 
 
 chmod 777 $scr_dir'als.py'

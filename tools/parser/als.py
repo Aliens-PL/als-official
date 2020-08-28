@@ -16,8 +16,8 @@ possible_cmd = {
 
     "run":
     [
-        2,
         1,
+        0,
         "!file_name.als",
     ],
 
