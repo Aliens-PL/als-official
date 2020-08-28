@@ -2,7 +2,6 @@
 
 echo "
 +----------------- ALS-WELCOME------------------+
-- 	Made By 0x544D, ADIL, JAMAL
 -	github : Aliens-PL/als-official
 +-----------------------------------------------+
 
