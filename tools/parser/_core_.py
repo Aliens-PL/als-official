@@ -8,4 +8,8 @@ class CoreEngine(object):
 
 
 if __name__ == "__main__":
-    CoreEngine('file.als' , '')
+    argz = __import__('sys').argv
+    if argz.__len__() >= 2 :
+        CoreEngine(argz[1] , '')
+    else:
+        CoreEngine('file.als' , '')

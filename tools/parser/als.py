@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-from sys import argv, platform
+from sys import argv, platform , path as sys_path
 from os import name , path , mkdir , getcwd
+from _core_ import CoreEngine
 
 possible_cmd = {
 
@@ -11,6 +12,13 @@ possible_cmd = {
         "!project_name",
         "~path",
         # add "~os" if user want to specify which os to run on
+    ],
+
+    "run":
+    [
+        2,
+        1,
+        "!file_name.als",
     ],
 
     "update":
@@ -89,6 +97,9 @@ class als(object):
                 "wals",
                 "mals",
                 {
+                    "externals":[
+                        {"$loads.sals":""}
+                    ],
                     project_name+"_conf":
                     [
                         {
@@ -223,6 +234,24 @@ $space()
                 self.isDone = False
                 self.output = "+ Invalid ALS directory !"
 
+        elif name == 'run':
+            if seq.__len__() >= possible_cmd[name][0] :
+                self.__run_transpiler(seq[0])
+            else:
+                self.__run_transpiler()
+
+    def __run_transpiler(self , fpath = None):
+        if fpath is None:
+            fpath = path.join(getcwd(), 'main.als')
+        
+        fpath = path.abspath(fpath)
+        if path.exists(fpath):
+            CoreEngine(fpath, '')
+            print("+ Job Done !")
+            exit(0)
+        else :
+            print(f"+ No Such als file exists on the current directory {fpath}")
+            exit(0)
 
     # Later we make it work using keyword args (kwargs) better .
     def __init__(self, args):
