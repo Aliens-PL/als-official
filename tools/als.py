@@ -95,11 +95,17 @@ class als(object):
         tree = {
             self.path:[
                 "wals",
-                "mals",
                 {
-                    "externals":[
-                        {"$loads.sals":""}
-                    ],
+                    "mals":[
+                        {
+                            "externals":[
+                                {"$loads.sals":""}
+                            ],
+                        }
+                    ]
+                },
+                {
+                    
                     project_name+"_conf":
                     [
                         {
@@ -247,7 +253,7 @@ $space()
         fpath = path.abspath(fpath)
         if path.exists(fpath):
             CoreEngine(fpath, '')
-            print("+ Job Done !")
+            #print("+ Job Done !")
             exit(0)
         else :
             print(f"+ No Such als file exists on the current directory {fpath}")
