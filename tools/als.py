@@ -3,6 +3,8 @@ from sys import argv, platform , path as sys_path
 from os import name , path , mkdir , getcwd
 from _core_ import CoreEngine
 
+VERSION = 0.1
+HP = """\nManage your aliens project .\n\n> master commands : \n\nals createproject <name-of-project> [<optional-path>]\n\t> Create new aliens project in the specified path if you want   \n\nals update\n\t> Upgrade to latest version\n\nals remove [<optional-repository>]\n\t> Remove the aliens project in current or optional repository\n\nals run [<name.als>]\n\t> Run your space function (space.als)  or  her optional name \n\nals uninstall\n\t> Remove the aliens language from your computer\n"""
 possible_cmd = {
 
     "createproject":
@@ -33,16 +35,18 @@ possible_cmd = {
         0,
     ],
 
-    "-help":
+    "help":
     [
         0,
         0,
-    ]
+    ],
+
     
 }
 
 
 class als(object):
+    
 
     def __make_tree(self, dic , track_path=None):
         isRoot = False
@@ -271,12 +275,12 @@ $space
             return
 
         # !hardcoded , change it after please.
-        if name == 'createproject':
+        if name.lower() == 'createproject':
             if possible_cmd[name][0] == seq.__len__():
                 self.__create_environement(seq[0], seq[1])
             else :            
                 self.__create_environement(seq[0])
-        elif name == 'remove':
+        elif name.lower() == 'remove':
 
             abs_dir = getcwd()
                         
@@ -290,12 +294,17 @@ $space
                 self.isDone = False
                 self.output = "+ Invalid ALS directory !"
 
-        elif name == 'run':
+        elif name.lower() == 'run':
             if seq.__len__() >= possible_cmd[name][0] :
                 self.__run_transpiler(seq[0])
             else:
                 self.__run_transpiler()
-
+        elif name.lower() in ['version', '-v', 'v' , 'ver']:
+            print(VERSION)
+        
+        elif name.lower() in ['help', 'h', '-help', '-h']:
+            print(HP)
+            
     def __run_transpiler(self , fpath = None):
         if fpath is None:
             fpath = path.join(getcwd(), 'main.als')
