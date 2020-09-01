@@ -62,8 +62,8 @@ class Parser(object):
         self.__parse()
 
         if self.__isDone:
-            print(" Done .")
-            print(__import__('json').dumps(self.__out , indent=4 ))
+            pass#print(" Done .")
+            #print(__import__('json').dumps(self.__out , indent=4 ))
         else:
             print(self.__output)
             exit(0)
@@ -80,10 +80,12 @@ class Parser(object):
             self.__fdefs = [self.__lex['main'][x][1].strip().lower() for x in self.__lex['main'] if self.__lex['main'][x][0] == 'fdef' ]
             #print(self.__fdefs)
             try:
+                
                 for line_nbr in self.__lex['main']:
                     if self.__lex['main'][line_nbr] == "empty":
                         self.__out[line_nbr] = "\n"
 
+                    
 
                     elif isinstance(self.__lex['main'][line_nbr] , list):
                         if self.__lex['main'][line_nbr][0] == 'comment':
@@ -130,13 +132,7 @@ class Parser(object):
                             _sum -= 1
                             if _sum == 0:
                                 return line_nbr
-                    print(_sum)
-                    # if self.__lex['main'][line_nbr][1].strip()[-1] == symb_dico[symbole]:
-                    #     _sum  -= 1
-                    #     if _sum == 0:
-                    #         return line_nbr
-                    # elif self.__lex['main'][line_nbr][1].strip()[-1] == symbole:
-                    #     _sum += 1
+
 
             else:
                 print("+ Could not Find the closing { for the } in line "+ str(start_line))
@@ -148,7 +144,6 @@ class Parser(object):
         strp_line = line.strip()
         last_s = strp_line[-1]
         _lnbr = line_nbr
-
 
 
         if last_s != '{':
@@ -213,13 +208,61 @@ class Parser(object):
 /_/    \_\______|_____|______|_| \_|_____/           |_|    |______| v0.1
 
 + Github    : https://github.com/AliensPL/als-official
-+ Made by   : @samoray1998 , @AdilMERZ , @x544D
++ Made by   : @samoray1998 , @AdilMERZ , @x544D 
 + Note      : This is still not even fully functional , the main idea of this is,
               To Provide Our Idea , we Had litteraly no time to finish all this ,
               Since we only worked as 3 of us , But we will keep pushing it to the top :D .
-              
+
 """)
-        if not self.__check_presence(val , 'f'):
+        elif val == "$system":
+            # print(line)
+            __import__('os').system(str(line.strip()[len(val)+1:line.strip().index(')')]))
+        elif val == "$out":
+            c = str(line.strip()[len(val)+1:line.strip().index(')')])
+            if c.strip()[0] in ['"', "'"]:
+                print(c[1:-1].replace("\\n" , '\n'))
+            elif '+' in c.strip() and c.strip().split('+').__len__() == 2:
+                _tst = c.strip().split('+')
+                if re.match(r'\d', _tst[0]) and re.match(r'\d', _tst[1]):
+                    if isinstance(_tst[0] , int) or isinstance(_tst[1], int):
+                        print(int(_tst[0]) + int(_tst[1]))
+                    else:
+                        print(float(_tst[0]) + float(_tst[1]))
+
+            elif '-' in c.strip() and c.strip().split('-').__len__() == 2:
+                _tst = c.strip().split('-')
+                if re.match(r'\d', _tst[0]) and re.match(r'\d', _tst[1]):
+                    if isinstance(_tst[0] , int) or isinstance(_tst[1], int):
+                        print(int(_tst[0]) - int(_tst[1]))
+                    else:
+                        print(float(_tst[0]) - float(_tst[1]))
+
+            elif '/' in c.strip() and c.strip().split('/').__len__() == 2:
+                _tst = c.strip().split('/')
+                if re.match(r'\d', _tst[0]) and re.match(r'\d', _tst[1]):
+                    if _tst[1].strip() == '0':
+                        self.__set_err(f"+ You can not Devide by 0  at line {line_nbr}")
+
+                    if isinstance(_tst[0] , int) or isinstance(_tst[1], int):
+                        print(int(_tst[0]) / int(_tst[1]))
+                    else:
+                        print(float(_tst[0]) / float(_tst[1]))
+
+            elif '*' in c.strip() and c.strip().split('*').__len__() == 2:
+                _tst = c.strip().split('*')
+                if re.match(r'\d', _tst[0]) and re.match(r'\d', _tst[1]):
+                    if _tst[1].strip() == '0':
+                        self.__set_err(f"+ You can not Devide by 0  at line {line_nbr}")
+                        
+                    if isinstance(_tst[0] , int) or isinstance(_tst[1], int):
+                        print(int(_tst[0]) * int(_tst[1]))
+                    else:
+                        print(float(_tst[0]) * float(_tst[1]))
+
+        elif val == "$in":
+            print("+ errr , Sorry Human ! Your variable was Devoured by the black hole :< ")
+            exit(0)
+        elif not self.__check_presence(val , 'f'):
             self.__set_err(f"+ [{val}] use of undefined Function at line : {line_nbr} .")
         else:
             print("good")
@@ -253,11 +296,13 @@ class Parser(object):
 
     def __check_loads(self , load_dico):
         if load_dico['type'] == '@':
-            pass
+            self.__set_err("+ Import Table is not implemented yet")
         elif load_dico['type'] == '_':
-            pass
+            if not __import__('os').path.exists(load_dico['source']):
+                self.__set_err(f"+ {load_dico['source']} Is not a valid Path .")
         elif load_dico['type'] == 'http_d':
-            pass
+            if not __import__('os').path.exists(load_dico['source']):
+                pass
         else :
             self.__set_err("+ UNKNOWN Loading , probably the code was Tampered with .")
             

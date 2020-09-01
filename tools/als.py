@@ -151,6 +151,7 @@ locked planet global
                 {
                     "$main.als":'''
 
+
 # Hello dear Human !
 # Since you're here now , You must know that this is space so your earthy rules does not fully applies here !
 
@@ -166,7 +167,7 @@ locked planet global
 #       |_ my_bag   = ["APen", "APaper"]
 
 # + We Also have many Functionalities that we do use .
-#       |_ We Create them as following : $func_name p1 p2 { ... }
+#       |_ We Ctreate them as following : $func_name p1 p2 { ... }
 #       |_ We Call them using $func_name(v1, v2)
 
 # + We also have Galaxies which are a Bunch of Entities , that we load up when needed.
@@ -181,15 +182,64 @@ locked planet global
 # Good luck , fresh Alien !
 
 
-from @als load @als_hello
-using @als_hello
+##### EDIT :
+# We were our of time , but lexer is fuly working and managing all the stuff including oop
+# Parser is somewhat like 10% done , so  most you see there executing is simply a manual python converting .
+# One thing to know , our language is not affected by lower/upper casing either vars , funcs , loads ... everything .
 
-$space()
+#possible loads : 
+
+# load MyPlanet     # this basically look for a local file in mals folder named MyPlanet.mals
+# load @base        # This is out galaxy which has all the builtin stuff .
+# from ../path_to_module load MyPlanet
+# from http://..../web.mals load MyPlanet # this download the file only once and save it as random_string.mals which will be accessed after directly.
+
+# OOP should always be in a .mals File
+
+# Defining Function  :
+$SayHi _name _prenom 
 {
+    # if statement
+    if(_name == "saad"){
+        _name = "SAAD"
+    }
+    # elif statement
+    :(_name == "adil")
+    {
+        _name = "ADIL" 
+    }:(_name == "jamal")
+    {
+        _name = "JAMAL"
+    }
+    # else statement
+    :{
+        _name = "UNKNOWN"
+    }
+
+    # range loop
+    @loop(1, 5) as x
+    {
+        _prenom += $Sayhi("MAHMOUD", "TEST")
+    }
+
+    # shoud print _name + _prenom12345
+    return _name + _prenom
+}
+
+
+$space
+{
+    # Please Note that we had no time to actually make it happen , but you can at least feel it ..
+    # We will keep working on it .
+
     $als_official()
-    $show("Hello Humanity ,\\nWe , Aliens also know how to code !")
+    $system("ls")
+    
+    $out(8*2)
+    #$out("\n\nHello Humanity ,\nWe , Aliens also know how to code !")
+
 }                    
-                    '''
+                                  '''
                 }
             ]
         }

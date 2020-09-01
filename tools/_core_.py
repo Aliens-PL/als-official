@@ -8,17 +8,7 @@ class CoreEngine(object):
         lex = Lexer(_tmp_f , fpath)
         self.__lexDict = lex.GetLexDict()
         del lex
+        open(__import__('os').path.join(fpath, 'lexer_output.json') , 'w+').write(__import__('json').dumps( self.__lexDict , indent = 4))
         par = Parser(self.__lexDict)
     
     
-
-
-
-
-
-if __name__ == "__main__":
-    argz = __import__('sys').argv
-    if argz.__len__() >= 2 :
-        CoreEngine(argz[1] , '')
-    else:
-        CoreEngine('file.als' , '')
