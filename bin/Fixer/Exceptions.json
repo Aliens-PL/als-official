@@ -8,7 +8,11 @@
 		"12":"[ERR] Unknown __c.cfg File Signatures.",
 		"13":"[ERR] Cfg Called on Null",
 		"14":"[ERR] C __lexer library Not found !",
-		"15":"[ERR] Failed to load C __lexer Library !"
+		"15":"[ERR] Failed to load C __lexer Library !",
+		"16":"[ERR] Called P_case with Invalid Flag !",
+		"17":"[ERR] Called U_case with Invalid Flag !",
+		"18":"[ERR] P_case Flag Not Found !",
+		"19":"[ERR] U_case Flag Not Found !"
 	},
 
 	"fr":

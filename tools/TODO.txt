@@ -1,0 +1,9 @@
+
+
+# [+] Remake __core__.py as a sub_core instead , that will be used along with the actual core .
+	#_
+	#__ This will actualy be less Work for the compiler ? probably 0.45 % less work (to check later) ..
+
+# [+] sub_core => Will launch one job (using the flag) at a time (multithreaded) , sit and listen for it to be done , report back the the core.
+
+# [~] if we have time left , we implement our @base Functions/Procedures in C++ Instead of just calling their equivalent in python .
