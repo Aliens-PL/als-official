@@ -187,7 +187,8 @@ locked planet global
 
 
 ##### EDIT :
-# We were our of time , but lexer is fuly working and managing all the stuff including oop
+# We were out of time , but lexer is fully working and managing almost all the cases .
+
 # Parser is somewhat like 10% done , so  most you see there executing is simply a manual python converting .
 # One thing to know , our language is not affected by lower/upper casing either vars , funcs , loads ... everything .
 
@@ -198,7 +199,7 @@ locked planet global
 # from ../path_to_module load MyPlanet
 # from http://..../web.mals load MyPlanet # this download the file only once and save it as random_string.mals which will be accessed after directly.
 
-# OOP should always be in a .mals File
+# OOP should always be in a .mals File  
 
 # Defining Function  :
 $SayHi _name _prenom 
@@ -230,11 +231,18 @@ $SayHi _name _prenom
     return _name + _prenom
 }
 
+# At first we have actually used a sharedlib.so that we have decided to make in C ,
+# then load it up to use it from python in order to use some hacky stuff :p
+# But that was not the right path to follow especially with the time left .
+
+# We will for sure use that a little later on .
 
 $space
 {
     # Please Note that we had no time to actually make it happen , but you can at least feel it ..
-    # We will keep working on it .
+    # Winning or loosing the Jam will not affect us from keep pushing it up (for people who find it interesting).
+
+    # normally this is loaded from @als_ a built-in galaxy
 
     $als_official()
     #$system("ls")
@@ -275,12 +283,12 @@ $space
             return
 
         # !hardcoded , change it after please.
-        if name.lower() == 'createproject':
+        if name == 'createproject':
             if possible_cmd[name][0] == seq.__len__():
                 self.__create_environement(seq[0], seq[1])
             else :            
                 self.__create_environement(seq[0])
-        elif name.lower() == 'remove':
+        elif name == 'remove':
 
             abs_dir = getcwd()
                         
@@ -294,16 +302,18 @@ $space
                 self.isDone = False
                 self.output = "+ Invalid ALS directory !"
 
-        elif name.lower() == 'run':
+        elif name == 'run':
             if seq.__len__() >= possible_cmd[name][0] :
                 self.__run_transpiler(seq[0])
             else:
                 self.__run_transpiler()
-        elif name.lower() in ['version', '-v', 'v' , 'ver']:
+        elif name in ['version', '-v', 'v' , 'ver']:
             print(VERSION)
+            exit(0)
         
-        elif name.lower() in ['help', 'h', '-h']:
+        elif name in ['help', 'h', '-help', '-h']:
             print(HP)
+            exit(0)
             
     def __run_transpiler(self , fpath = None):
         if fpath is None:
@@ -351,11 +361,11 @@ $space
         args_len = args.__len__()
 
         if args_len <= 0:
-            print("+ No Argument was Specified , check help for more .")
+            print("+ No Argument was Speciafied , check -help for more .")
             exit(0)
         
         else:
-            self.output = " [ "+args[0] + " ] is not a valid Command , check help for more infos ."
+            self.output = " [ "+args[0] + " ] is not a valid Command , check -help for more infos ."
 
             for pos , arg in enumerate(args):
                 if arg.lower() in possible_cmd.keys():
