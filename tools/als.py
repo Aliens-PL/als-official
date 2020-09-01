@@ -302,7 +302,7 @@ $space
         elif name.lower() in ['version', '-v', 'v' , 'ver']:
             print(VERSION)
         
-        elif name.lower() in ['help', 'h', '-help', '-h']:
+        elif name.lower() in ['help', 'h', '-h']:
             print(HP)
             
     def __run_transpiler(self , fpath = None):
@@ -351,11 +351,11 @@ $space
         args_len = args.__len__()
 
         if args_len <= 0:
-            print("+ No Argument was Speciafied , check -help for more .")
+            print("+ No Argument was Specified , check help for more .")
             exit(0)
         
         else:
-            self.output = " [ "+args[0] + " ] is not a valid Command , check -help for more infos ."
+            self.output = " [ "+args[0] + " ] is not a valid Command , check help for more infos ."
 
             for pos , arg in enumerate(args):
                 if arg.lower() in possible_cmd.keys():
