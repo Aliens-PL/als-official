@@ -10,7 +10,7 @@ echo "
 
 "
 
-scr_dir=$(dirname "$(readlink -f "$BASH_SOURCE")")/tools/parser/
+scr_dir=$(dirname "$(readlink -f "$BASH_SOURCE")")/tools/
 
 
 chmod 777 $scr_dir'als.py'
