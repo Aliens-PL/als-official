@@ -282,6 +282,7 @@ $space
             self.output = "\t+ Project name [ "+name+" ] Must be only alphabets !" 
             return
 
+        name = name.lower()
         # !hardcoded , change it after please.
         if name == 'createproject':
             if possible_cmd[name][0] == seq.__len__():
@@ -307,11 +308,11 @@ $space
                 self.__run_transpiler(seq[0])
             else:
                 self.__run_transpiler()
-        elif name in ['version', '-v', 'v' , 'ver']:
+        elif name  == 'version':
             print(VERSION)
             exit(0)
         
-        elif name in ['help', 'h', '-help', '-h']:
+        elif name == 'help':
             print(HP)
             exit(0)
             
@@ -361,11 +362,11 @@ $space
         args_len = args.__len__()
 
         if args_len <= 0:
-            print("+ No Argument was Speciafied , check -help for more .")
+            print("+ No Argument was Speciafied , check help for more .")
             exit(0)
         
         else:
-            self.output = " [ "+args[0] + " ] is not a valid Command , check -help for more infos ."
+            self.output = " [ "+args[0] + " ] is not a valid Command , check help for more infos ."
 
             for pos , arg in enumerate(args):
                 arg = arg.lower()

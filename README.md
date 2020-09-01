@@ -30,6 +30,7 @@ Well We're Obviously **Aliens** too if you are wondering , but the main thing he
 **Install als**
 `$ chmod +x setup.sh`
 `$ ./setup.sh`
+or simply click run button if you're on repl.it
 
 **Some als cmds**
 ```
