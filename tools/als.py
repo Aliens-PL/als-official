@@ -368,7 +368,8 @@ $space
             self.output = " [ "+args[0] + " ] is not a valid Command , check -help for more infos ."
 
             for pos , arg in enumerate(args):
-                if arg.lower() in possible_cmd.keys():
+                arg = arg.lower()
+                if arg in possible_cmd.keys():
                     if pos != 0:
                         self.output = " [ "+arg + " ] Must always be placed right after als ."
                         break
