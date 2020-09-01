@@ -208,7 +208,7 @@ class Parser(object):
 /_/    \_\______|_____|______|_| \_|_____/           |_|    |______| v0.1
 
 + Github    : https://github.com/AliensPL/als-official
-+ Made by   : @samoray1998 , @AdilMERZ , @x544D 
++ Made by   : @samoray1998 , @AdilMERZ , @x544D , @Mahmoud_Omrani
 + Note      : This is still not even fully functional , the main idea of this is,
               To Provide Our Idea , we Had litteraly no time to finish all this ,
               Since we only worked as 3 of us , But we will keep pushing it to the top :D .

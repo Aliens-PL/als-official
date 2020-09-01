@@ -1,2 +1,2 @@
 language = "bash"
-run = "als run"
+run = "./setup.sh"
