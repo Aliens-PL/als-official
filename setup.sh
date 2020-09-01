@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "
+echo '
           _      _____ ______ _   _  _____            _____  _      
     /\   | |    |_   _|  ____| \ | |/ ____|          |  __ \| |     
    /  \  | |      | | | |__  |  \| | (___    ______  | |__) | |     
@@ -16,7 +16,7 @@ echo "
 
 + Usage : als help
 
-"
+'
 
 scr_dir=$(dirname "$(readlink -f "$BASH_SOURCE")")/tools/
 

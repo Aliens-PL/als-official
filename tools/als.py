@@ -237,10 +237,10 @@ $space
     # We will keep working on it .
 
     $als_official()
-    $system("ls")
+    #$system("ls")
     
-    $out(8*2)
-    #$out("\n\nHello Humanity ,\nWe , Aliens also know how to code !")
+    #$out(8*2)
+    $out("\\n\\nHello Humanity ,\\nWe , Aliens also know how to code !")
 
 }                    
                                   '''
