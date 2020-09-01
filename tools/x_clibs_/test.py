@@ -1,7 +1,7 @@
 import ctypes , glob , os
 
 
-libf = glob.glob('/home/saad/Desktop/_clibs_/*.so')[0]
+libf = glob.glob('C:\\Users\\544D\\Desktop\\J A M\\als-official\\tools\\parser\\_clibs_\\lib__lexer.so')[0]
 
 if libf:
     print("+ Found "+str(libf))

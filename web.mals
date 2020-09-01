@@ -1,0 +1,821 @@
+
+# @static since All the Planet's Methods are static
+# in a None-static Planet , You can define that a method is static by simply decorating it with @static on top of it .
+# We Might update this after to a locked Planet to do some jobs and inherit from it
+
+
+@static
+planet web {
+
+
+#Main_function_for_create_and_full_file_with_format_(.html)
+
+$als_echo txt, fileName , isAppend = x {
+	symb = " > "
+	if (isAppend == o){
+		symb = " >> "
+	}
+	$system("echo "+txt+symb+fileName)
+}
+
+$alspage filepath = '.' ,code {
+	directory=$f_directory(filepath)
+    $f_write(filepath code)
+}
+
+$addstyle query ,csscodes {
+	style = "\n"
+	style = style + query + " {\n"  # .className {
+	style = style + csscodes 		# color : red ; 
+	style = style + "\n }" 			# }
+    $f_append(directory+"styleAls.css" style)
+}
+
+$addscript jscodes {
+	script = "\n"
+	script = script + jscodes  	# alert('hello world !'); 
+    $f_append(directory+"/scriptAls.js" script)
+}
+
+$addevent query eventname jscodes {
+	script = "\n" 
+	script = script + "$('" + query + "')."+eventname+"(function( {\n"  	#  $('body').load ( function( {
+	script = script + jscodes  											# alert('hello world !'); 
+	script = script + "\n });" 											# }
+    $f_append(directory+"scriptAls.js" script)
+}
+
+$texthtml codehtml {
+	text = codehtml.replace(" " "&nbsp;")
+	text = text.replace("<" "&lt;")
+	text = text.replace(">" "&rt;")
+	ret text
+}
+
+$open tagname {
+    ret "<"+tagname  
+}
+
+$close tagname {
+    ret "</"+tagname+">" 
+}
+
+#Main Tags 
+
+$html code {
+    start=$open("html")+">"
+    end=$close("html")
+    result = start+"\n"+code+"\n"+end 
+    ret result
+}
+
+$head text_title text_html text_style text_script {
+    start=$open("head")+">"
+    end=$close("head")
+	tools = "\n<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' >"
+	tools = tools +"<meta name='viewport' content='width=device-width  initial-scale=1  shrink-to-fit=no'>"
+	tools = tools +"\n<script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>" 
+	tools = tools +"\n<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>"
+	tools = tools +"\n<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>"
+	tools = tools +"\n<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>"
+    text=text_title+tools+"\n"+text_html+"\n"+text_style+"\n"+text_script
+    result = start+"\n"+text+"\n"+end 
+    ret result
+}
+
+$body text_attr text_content {
+    start=$open("body")+" "+text_attr+">"
+    end=$close("body")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+
+#Tags Head
+
+$title text_content {
+    start=$open("title")+">"
+    end=$close("title")
+    result = start+"\n"+text+"\n"+end 
+    ret result
+}
+
+$style text_attr text_content {
+    start=$open("style")+" "+text_attr+">"
+    end=$close("style")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$script text_attr text_content {
+    start=$open("script")+" "+text_attr+">"
+    end=$close("script")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+#Tags Body 
+    #Structural Tags
+
+$header text_attr text_content {
+    start=$open("header")+" "+text_attr+">"
+    end=$close("header")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$main text_attr text_content {
+    start=$open("main")+" "+text_attr+">"
+    end=$close("main")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$footer text_attr text_content {
+    start=$open("footer")+" "+text_attr+">"
+    end=$close("footer")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$nav text_attr text_content {
+    start=$open("nav")+" "+text_attr+">"
+    end=$close("nav")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$section text_attr text_content {
+    start=$open("section")+" "+text_attr+">"
+    end=$close("section")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$aside text_attr text_content {
+    start=$open("aside")+" "+text_attr+">"
+    end=$close("aside")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$article text_attr text_content {
+    start=$open("article")+" "+text_attr+">"
+    end=$close("article")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$div text_attr text_content {
+    start=$open("div")+" "+text_attr+">"
+    end=$close("div")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$p text_attr text_content {
+    start=$open("p")+" "+text_attr+">"
+    end=$close("p")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$details text_attr text_content {
+    start=$open("details")+" "+text_attr+">"
+    end=$close("details")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$summary text_attr text_content {
+    start=$open("summary")+" "+text_attr+">"
+    end=$close("summary")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$h1 text_attr text_content {
+    start=$open("h1")+" "+text_attr+">"
+    end=$close("h1")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$h2 text_attr text_content {
+    start=$open("h2")+" "+text_attr+">"
+    end=$close("h2")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$h3 text_attr text_content {
+    start=$open("h3")+" "+text_attr+">"
+    end=$close("h3")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$h4 text_attr text_content {
+    start=$open("h4")+" "+text_attr+">"
+    end=$close("h4")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$h5 text_attr text_content {
+    start=$open("h5")+" "+text_attr+">"
+    end=$close("h5")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$h6 text_attr text_content {
+    start=$open("h6")+" "+text_attr+">"
+    end=$close("h6")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$span text_attr text_content {
+    start=$open("span")+" "+text_attr+">"
+    end=$close("span")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$a text_attr hyper_link text_content {
+    start=$open("a")+" "+text_attr+ "href='"+hyper_link+"'" >"
+    end=$close("a")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$i text_attr text_content {
+    start=$open("i")+" "+text_attr+">"
+    end=$close("i")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+#Form Tags
+
+$form text_attr text_content {
+    start=$open("form")+" "+text_attr+">"
+    end=$close("form")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$datalist text_attr text_content {
+    start=$open("datalist")+" "+text_attr+">"
+    end=$close("datalist")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$option text_value {
+    start=$open("option")+" "+ "value='"+text_value+"'" >"
+    ret result
+}
+
+$input text_attr text_type {
+    start=$open("input")+" "+text_attr+" "+ "type='"+text_type+"'" >"
+    ret result
+}
+
+$label text_attr text_content {
+    start=$open("label")+" "+text_attr+">"
+    end=$close("label")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$button text_attr text_content {
+    start=$open("button")+" "+text_attr+">"
+    end=$close("button")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$textarea text_attr text_content {
+    start=$open("textarea")+" "+text_attr+">"
+    end=$close("textarea")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$fieldset text_attr text_content {
+    start=$open("fieldset")+" "+text_attr+">"
+    end=$close("fieldset")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+$keygen text_attr {
+	start = $open("hr") + " " + attr_text+" />"
+	ret start
+}
+
+$select text_attr text_content {
+    start=$open("select")+" "+text_attr+">"
+    end=$close("select")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+} 
+
+$legend text_attr text_content {
+    start=$open("legend")+" "+text_attr+">"
+    end=$close("legend")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+} 
+
+$meter text_attr text_content {
+    start=$open("meter")+" "+text_attr+">"
+    end=$close("meter")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+} 
+
+$optgroup text_attr text_content {
+    start=$open("optgroup")+" "+text_attr+">"
+    end=$close("optgroup")
+    result = start+"\n"+text_content+"\n"+end 
+    ret result
+}
+
+#Tags of list
+
+$ul attr_text content_text {
+	start = $open("ul") + " " + attr_text+" >"
+	end = $close("ul")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$ol attr_text content_text {
+	start = $open("ol") + " " + attr_text+" >"
+	end = $close("ol")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$li attr_text content_text {
+	start = $open("li") + " " + attr_text+" >"
+	end = $close("li")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$dl attr_text content_text {
+	start = $open("dl") + " " + attr_text+" >"
+	end = $close("dl")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$dt attr_text content_text {
+	start = $open("dt") + " " + attr_text+" >"
+	end = $close("dt")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$dd attr_text content_text {
+	start = $open("dd") + " " + attr_text+" >"
+	end = $close("dd")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+#Tags of table
+
+$table attr_text content_text {
+	start = $open("table") + " " + attr_text+" >"
+	end = $close("table")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$col attr_text {
+	start = $open("col") + " " + attr_text+" />"
+	ret start
+}
+
+$colgroup attr_text content_text {
+	start = $open("colgroup") + " " + attr_text+" >"
+	end = $close("colgroup")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$caption attr_text content_text {
+	start = $open("caption") + " " + attr_text+" >"
+	end = $close("caption")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$tr attr_text content_text {
+	start = $open("tr") + " " + attr_text+" >"
+	end = $close("tr")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$th attr_text content_text {
+	start = $open("th") + " " + attr_text+" >"
+	end = $close("th")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$td attr_text content_text {
+	start = $open("td") + " " + attr_text+" >"
+	end = $close("td")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$thead attr_text content_text {
+	start = $open("thead") + " " + attr_text+" >"
+	end = $close("thead")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$tbody attr_text content_text {
+	start = $open("tbody") + " " + attr_text+" >"
+	end = $close("tbody")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$tfoot attr_text content_text {
+	start = $open("tfoot") + " " + attr_text+" >"
+	end = $close("tfoot")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+#tags of formating
+
+$abbr attr_text content_text {
+	start = $open("abbr") + " " + attr_text+" >"
+	end = $close("abbr")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$acronym attr_text content_text {
+	start = $open("acronym") + " " + attr_text+" >"
+	end = $close("acronym")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$address attr_text content_text {
+	start = $open("address") + " " + attr_text+" >"
+	end = $close("address")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$b attr_text content_text {
+	start = $open("b") + " " + attr_text+" >"
+	end = $close("b")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$bdi attr_text content_text {
+	start = $open("bdi") + " " + attr_text+" >"
+	end = $close("bdi")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$bdo attr_text content_text {
+	start = $open("bdo") + " " + attr_text+" >"
+	end = $close("bdo")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$big attr_text content_text {
+	start = $open("big") + " " + attr_text+" >"
+	end = $close("big")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$blockquote attr_text content_text {
+	start = $open("blockquote") + " " + attr_text+" >"
+	end = $close("blockquote")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$code attr_text content_text {
+	start = $open("code") + " " + attr_text+" >"
+	end = $close("code")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$del attr_text content_text {
+	start = $open("del") + " " + attr_text+" >"
+	end = $close("del")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$dfn attr_text content_text {
+	start = $open("dfn") + " " + attr_text+" >"
+	end = $close("dfn")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$em attr_text content_text {
+	start = $open("em") + " " + attr_text+" >"
+	end = $close("em")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$ins attr_text content_text {
+	start = $open("ins") + " " + attr_text+" >"
+	end = $close("ins")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$kbd attr_text content_text {
+	start = $open("kbd") + " " + attr_text+" >"
+	end = $close("kbd")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$mark attr_text content_text {
+	start = $open("mark") + " " + attr_text+" >"
+	end = $close("mark")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$output attr_text content_text {
+	start = $open("output") + " " + attr_text+" >"
+	end = $close("output")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$pre attr_text content_text {
+	start = $open("pre") + " " + attr_text+" >"
+	end = $close("pre")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$progress attr_text content_text {
+	start = $open("progress") + " " + attr_text+" >"
+	end = $close("progress")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$q attr_text content_text {
+	start = $open("q") + " " + attr_text+" >"
+	end = $close("q")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$rp attr_text content_text {
+	start = $open("rp") + " " + attr_text+" >"
+	end = $close("rp")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$rt attr_text content_text {
+	start = $open("rt") + " " + attr_text+" >"
+	end = $close("rt")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$ruby attr_text content_text {
+	start = $open("ruby") + " " + attr_text+" >"
+	end = $close("ruby")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$samp attr_text content_text {
+	start = $open("samp") + " " + attr_text+" >"
+	end = $close("samp")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$small attr_text content_text {
+	start = $open("small") + " " + attr_text+" >"
+	end = $close("small")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$strong attr_text content_text {
+	start = $open("strong") + " " + attr_text+" >"
+	end = $close("strong")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$sub attr_text content_text {
+	start = $open("sub") + " " + attr_text+" >"
+	end = $close("sub")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$sup attr_text content_text {
+	start = $open("sup") + " " + attr_text+" >"
+	end = $close("sup")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$tt attr_text content_text {
+	start = $open("tt") + " " + attr_text+" >"
+	end = $close("tt")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$var attr_text content_text {
+	start = $open("var") + " " + attr_text+" >"
+	end = $close("var")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$wbr attr_text {
+	start = $open("img") + " " + attr_text+" />"
+	ret start
+}
+
+#Embedded Content Tags
+
+$area attr_text {
+	start = $open("area") + " " + attr_text+" />"
+	ret start
+}
+
+$audio attr_text content_text {
+	start = $open("audio") + " " + attr_text+" >"
+	end = $close("audio")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$canvas attr_text content_text {
+	start = $open("canvas") + " " + attr_text+" >"
+	end = $close("canvas")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$embed attr_text {
+	start = $open("embed") + " " + attr_text+" />"
+	ret start
+}
+
+$figcaption attr_text content_text {
+	start = $open("figcaption") + " " + attr_text+" >"
+	end = $close("figcaption")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$figure attr_text content_text {
+	start = $open("figure") + " " + attr_text+" >"
+	end = $close("figure")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$frame attr_text content_text {
+	start = $open("frame") + " " + attr_text+" >"
+	end = $close("frame")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$frameset attr_text content_text {
+	start = $open("frameset") + " " + attr_text+" >"
+	end = $close("frameset")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$iframe attr_text content_text {
+	start = $open("iframe") + " " + attr_text+" >"
+	end = $close("iframe")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$img attr_text {
+	start = $open("img") + " " + attr_text+" />"
+	ret start
+}
+
+$map attr_text content_text {
+	start = $open("map") + " " + attr_text+" >"
+	end = $close("map")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$noframes attr_text content_text {
+	start = $open("noframes") + " " + attr_text+" >"
+	end = $close("noframes")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$object attr_text content_text {
+	start = $open("object") + " " + attr_text+" >"
+	end = $close("object")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$param attr_text {
+	start = $open("param") + " " + attr_text+" />"
+	ret start
+}
+
+$source attr_text {
+	start = $open("source") + " " + attr_text+" />"
+	ret start
+}
+
+$track attr_text {
+	start = $open("track") + " " + attr_text+" />"
+	ret start
+}
+
+$time attr_text content_text {
+	start = $open("time") + " " + attr_text+" >"
+	end = $close("time")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+$video attr_text content_text {
+	start = $open("video") + " " + attr_text+" >"
+	end = $close("video")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+#Other tags
+
+$br attr_text {
+	start = $open("br") + " " + attr_text+" />"
+	ret start
+}
+
+$hr attr_text {
+	start = $open("hr") + " " + attr_text+" />"
+	ret start
+}
+
+$base attr_text {
+	start = $open("base") + " " + attr_text+" />"
+	ret start
+}
+
+$link attr_text {
+	start = $open("link") + " " + attr_text+" />"
+	ret start
+}
+
+$meta attr_text {
+	start = $open("meta") + " " + attr_text+" />"
+	ret start
+}
+
+$noscript attr_text content_text {
+	start = $open("noscript") + " " + attr_text+" >"
+	end = $close("noscript")
+	result = start + "\n" + content_text + "\n" + end 
+	ret result
+}
+
+}
