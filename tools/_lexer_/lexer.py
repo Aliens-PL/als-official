@@ -67,9 +67,9 @@ class Lexer(object):
         # Func Calls
         F_CALL = r'\$(?!space\b)[A-Za-z_][A-Za-z0-9_]*\s*\('
         # Opening / Left symboles
-        L_SYMBOLE_2 = r'^(\s*[\{\[\(]\s*)'
+        L_SYMBOLE_2 = r'^(\s*(?!\}\s*\{\s*\b)[\{\[]\s*)'
         # Closing / right Symboles
-        R_SYMBOLE_2 = r'^(\s*[\}\]\)]\s*)'
+        R_SYMBOLE_2 = r'^(\s*(?!\}\s*\{\s*)[\}\]]\s*)'
         # IF COND
         COND_IF     = r'\s*[^\S\w]if\s*\((.*)\)[\s\{]*'
         # ELIF COND
@@ -351,7 +351,7 @@ class Lexer(object):
                     else:
                         print(f"\n+ [L:{line_nbr+1}] A constant should be set to a value at Declaration time !")
                         exit(0)
-                        
+
                 # 6 - Check if it's a function call
                 elif self.__RegExCheck(line, 'fcall'):
                     self.__dico['main'][line_nbr] = [

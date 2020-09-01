@@ -10,20 +10,24 @@ planet web {
 
 #Main_function_for_create_and_full_file_with_format_(.html)
 
-$als_echo txt, fileName , isAppend = x {
+$als_echo txt fileName isAppend {
 	symb = " > "
-	if (isAppend == o){
+	if (isAppend == 1){
 		symb = " >> "
+	}:
+	{
+
 	}
+
 	$system("echo "+txt+symb+fileName)
 }
 
-$alspage filepath = '.' ,code {
+$alspage filepath code {
 	directory=$f_directory(filepath)
     $f_write(filepath code)
 }
 
-$addstyle query ,csscodes {
+$addstyle query  csscodes {
 	style = "\n"
 	style = style + query + " {\n"  # .className {
 	style = style + csscodes 		# color : red ; 
@@ -34,7 +38,7 @@ $addstyle query ,csscodes {
 $addscript jscodes {
 	script = "\n"
 	script = script + jscodes  	# alert('hello world !'); 
-    $f_append(directory+"/scriptAls.js" script)
+    $f_append(directory+"/scriptAls.js", script)
 }
 
 $addevent query eventname jscodes {
@@ -42,13 +46,13 @@ $addevent query eventname jscodes {
 	script = script + "$('" + query + "')."+eventname+"(function( {\n"  	#  $('body').load ( function( {
 	script = script + jscodes  											# alert('hello world !'); 
 	script = script + "\n });" 											# }
-    $f_append(directory+"scriptAls.js" script)
+    $f_append(directory+"scriptAls.js", script)
 }
 
 $texthtml codehtml {
-	text = codehtml.replace(" " "&nbsp;")
-	text = text.replace("<" "&lt;")
-	text = text.replace(">" "&rt;")
+	text = codehtml.replace(" " ,"&nbsp;")
+	text = text.replace("<" ,"&lt;")
+	text = text.replace(">", "&rt;")
 	ret text
 }
 

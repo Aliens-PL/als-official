@@ -50,8 +50,9 @@ class Parser(object):
     def __init__(self , lexDict):
         self.__py_builtins = __import__('keyword').kwlist.extend(dir('__builtins__'))
         self.__out = {}
-        
+
         self.__fdefs = []
+        self.__vars  = []
         
         self.__isDone = True
         self.__output = ""
@@ -62,11 +63,10 @@ class Parser(object):
 
         if self.__isDone:
             print(" Done .")
-            #print("+ Executing the Script now ... ")
+            print(__import__('json').dumps(self.__out , indent=4 ))
         else:
             print(self.__output)
             exit(0)
-
 
     def __set_err(self, er):
         print('\n'+er)
@@ -97,6 +97,8 @@ class Parser(object):
                             self.__check_vars( line_nbr, self.__lex['main'][line_nbr][1])                        
                         elif self.__lex['main'][line_nbr][0] == 'fcall':
                             self.__check_fcall( line_nbr, self.__lex['main'][line_nbr][1])
+                        elif self.__lex['main'][line_nbr][0] == 'fdef':
+                            self.__check_fdef(line_nbr , self.__lex['main'][line_nbr][1])
 
             except Exception as ex:
                 print('\n'+str(ex))
@@ -105,10 +107,118 @@ class Parser(object):
             self.__set_err("+ Parser Failed due to Inteception or code fail .")
 
 
+    def __check_closing_symbole(self , line_nbr , symbole = '{'):
+        start_line = line_nbr
+
+        symb_dico = {
+            '{':'}',
+            '[':']',
+            '(':')'
+        }
+        _sum  = 0
+
+        while True:
+            if line_nbr in self.__lex['main'].keys() :
+                if self.__lex['main'][line_nbr][0] not in ['var' , 'const' , 'comment', 'empty'] :
+                    #if self.__lex['main'][line_nbr][0] == 'cond_elif':
+                        # if self.__lex['main'][line_nbr][1].strip()[0] == symb_dico[symbole]:
+                        #     _sum -= 1
+                    for a in self.__lex['main'][line_nbr][1].strip() :
+                        if a == symbole:
+                            _sum += 1
+                        elif a == symb_dico[symbole]:
+                            _sum -= 1
+                            if _sum == 0:
+                                return line_nbr
+                    print(_sum)
+                    # if self.__lex['main'][line_nbr][1].strip()[-1] == symb_dico[symbole]:
+                    #     _sum  -= 1
+                    #     if _sum == 0:
+                    #         return line_nbr
+                    # elif self.__lex['main'][line_nbr][1].strip()[-1] == symbole:
+                    #     _sum += 1
+
+            else:
+                print("+ Could not Find the closing { for the } in line "+ str(start_line))
+                exit(0)
+
+            line_nbr += 1
+
+    def __check_fdef(self, line_nbr , line):
+        strp_line = line.strip()
+        last_s = strp_line[-1]
+        _lnbr = line_nbr
+
+
+
+        if last_s != '{':
+            _lnbr += 1
+            last_s = self.__lex['main'][_lnbr][1].strip()
+
+            
+        if last_s == '{':
+            _nm = strp_line[1:]
+
+            self.__out[line_nbr] = [
+                'fdef',
+                {
+                    'line':strp_line,
+                    'block_start': line_nbr,
+                    'block_end': self.__check_closing_symbole(_lnbr)            
+                }
+            ]
+
+        else:
+            #print(self.__out)
+            print(f"+ Invalid Function Deffinition at {line_nbr}")
+            exit(0)
+
     def __check_fcall(self, line_nbr , line):
 
         val = line.strip()
         val = val[0:val.index('(')]
+        if val == "$als_official":
+            print("""          ...-...                                
+                          ...-... ..-...                              
+                       .-..            .--                            
+                     ...     .....        .-                          
+                    -       -..  .-.        -.                        
+                   -.      -       -         .-                       
+                   -      .-.....  .-         .-                      
+                   -       . .. .-.*.          .-                     
+                  ..  ........-.-.--            ..                    
+                   -....       . ......          -                    
+                    *                   ..      ..                    
+                    ++-            .-*-.  .-.   -                     
+                    *+++         -+++++++   -- .                      
+                    *++++       +++++++++.   +-                       
+                    .++++-     ++++++++++   *++.                      
+                     +++++    ++++++++++-  .++++ .                    
+                     +++++   .+++++++++.   ++++++ .                   
+                     .*++.   -+++++++*    +++++++*                    
+                      .        -+++-     .++++++++..                  
+                      ..               .-  .*++++++.                  
+                       -.             ..       .-**.                  
+                        -.         .-.                               
+                         ..       ...                                 
+                          .-.....-.                                   
+                            ....                   
+
+                 
+          _      _____ ______ _   _  _____            _____  _      
+    /\   | |    |_   _|  ____| \ | |/ ____|          |  __ \| |     
+   /  \  | |      | | | |__  |  \| | (___    ______  | |__) | |     
+  / /\ \ | |      | | |  __| | . ` |\___ \  |______| |  ___/| |      
+ / ____ \| |____ _| |_| |____| |\  |____) |          | |    | |____ 
+/_/    \_\______|_____|______|_| \_|_____/           |_|    |______| v0.1
+
++ Github    : https://github.com/AliensPL/als-official
++ Made by   : @samoray1998 , @AdilMERZ , @x544D
++ Note      : This is still not even fully functional , the main idea of this is,
+              To Provide Our Idea , we Had litteraly no time to finish all this ,
+              Since we only worked as 3 of us , But we will keep pushing it to the top :D .
+              
+""")
         if not self.__check_presence(val , 'f'):
             self.__set_err(f"+ [{val}] use of undefined Function at line : {line_nbr} .")
         else:
@@ -124,8 +234,11 @@ class Parser(object):
             val = val[0:str(val).index('(')]
             if not self.__check_presence(val , 'f'):
                 self.__set_err(f"+ [{val}] use of undefined Function at line : {line_nbr} .")
+            else:
+                # valid fcall
+                pass
 
-
+        
     def __check_presence(self, _of , _type):
         if _type == 'f':
             for fdef in self.__fdefs:

@@ -22,12 +22,10 @@ $SayHi _name _prenom
     }:(_name == "jamal")
     {
         _name = "JAMAL"
-    }
-    :
+    } : 
     {
         _name = "UNKNOWN"
     }
-
 
     # shoud print _name + _prenom12345
     return _name + _prenom
